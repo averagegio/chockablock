@@ -19,10 +19,44 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* Drawer wraps entire app so label can toggle input */}
+        <div className="drawer">
+          <input id="app-drawer" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-content">
+            {/* Top bar with menu button */}
+            <div className="fixed top-0 left-0 right-0 z-50 flex items-center h-14 px-3">
+              <label htmlFor="app-drawer" className="btn btn-ghost btn-sm" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </label>
+            </div>
+            <div className="pt-14">{children}</div>
+          </div>
+          <div className="drawer-side z-50">
+            <label htmlFor="app-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+            <aside className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="avatar">
+                  <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img src="/next.svg" alt="avatar" />
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold">Guest</div>
+                  <div className="text-xs opacity-70">Not signed in</div>
+                </div>
+              </div>
+
+              <form className="space-y-3">
+                <input type="email" placeholder="Email" className="input w-full" />
+                <input type="password" placeholder="Password" className="input w-full" />
+                <button type="button" className="btn btn-primary w-full">Login</button>
+              </form>
+            </aside>
+          </div>
+        </div>
       </body>
     </html>
   );
