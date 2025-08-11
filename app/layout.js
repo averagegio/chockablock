@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ThemeToggle from "./components/ThemeToggle";
+import ThemeSlider from "./components/ThemeSlider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,13 +26,17 @@ export default function RootLayout({ children }) {
         <div className="drawer">
           <input id="app-drawer" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
-            {/* Top bar with menu button */}
-            <div className="fixed top-0 left-0 right-0 z-50 flex items-center h-14 px-3">
+            {/* Top bar with menu button and theme toggle */}
+            <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-14 px-3">
               <label htmlFor="app-drawer" className="btn btn-ghost btn-sm" aria-label="Open menu">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </label>
+              <div className="flex items-center gap-2">
+                <ThemeSlider />
+                <ThemeToggle />
+              </div>
             </div>
             <div className="pt-14">{children}</div>
           </div>
